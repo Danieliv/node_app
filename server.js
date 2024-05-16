@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 const databaseUrl = "mongodb://localhost:27017/RestDatabase";
 
-mongoose.connect(databaseUrl, { useNewUrlPaserr: true });
+mongoose.connect(databaseUrl, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -17,6 +17,12 @@ router.use(function (req, res, next) {
 	console.log("Received Request");
 	next();
 });
+
+router.get("/", (req, res, next) => {
+	res.json({ message: "Able to visit /api." });
+});
+
+app.use("/api", router);
 
 app.listen(port, () => {
   console.log(`Server has started in port ${port}`);
