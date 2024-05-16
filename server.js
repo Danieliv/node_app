@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const Student = require("./student")
 const app = express();
 const port = 3000;
 const databaseUrl = "mongodb://localhost:27017/RestDatabase";
