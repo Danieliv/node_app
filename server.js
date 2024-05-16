@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
+const router = express.Router();
+
 app.listen(port, () => {
   console.log(`Server has started in port ${port}`);
 });
