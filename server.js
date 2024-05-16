@@ -13,6 +13,11 @@ app.use(bodyParser.json());
 
 const router = express.Router();
 
+router.use(function (req, res, next) {
+	console.log("Received Request");
+	next();
+});
+
 app.listen(port, () => {
   console.log(`Server has started in port ${port}`);
 });
