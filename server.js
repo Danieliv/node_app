@@ -34,6 +34,16 @@ router.route("/students")
     }
   });
 
+router.route("/students/:student_id")
+  .get(async function(req, res) {
+    try {
+      const student = await Student.findById(req.params.student_id);
+      res.send(student);
+    } catch (error) {
+      res.send(error);
+    }
+  });
+
 app.use("/api", router);
 
 app.listen(port, () => {
