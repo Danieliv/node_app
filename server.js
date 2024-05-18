@@ -15,12 +15,12 @@ app.use(bodyParser.json());
 const router = express.Router();
 
 router.use(function (req, res, next) {
-	console.log("Received Request");
-	next();
+  console.log("Received Request");
+  next();
 });
 
 router.get("/", (req, res, next) => {
-	res.json({ message: "Able to visit /api." });
+  res.json({ message: "Able to visit /api." });
 });
 
 router.route("/students")
