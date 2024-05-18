@@ -23,6 +23,17 @@ router.get("/", (req, res, next) => {
 	res.json({ message: "Able to visit /api." });
 });
 
+router.route("/students")
+  .get(async function(req, res) {
+    try {
+      const students = await Student.find();
+      res.json(students);
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  });
+
 app.use("/api", router);
 
 app.listen(port, () => {
