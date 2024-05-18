@@ -32,6 +32,17 @@ router.route("/students")
       console.log(error);
       res.send(error);
     }
+  })
+  .post(async function(req, res) {
+    let student = new Student();
+    student.name            = req.body.name;
+    student.numberOfCourses = req.body.numberOfCourses;
+    try {
+      await student.save();
+      res.json({ message: "Student added to database." });
+    } catch (error) {
+      res.send(error);
+    }
   });
 
 router.route("/students/:student_id")
