@@ -84,12 +84,20 @@ router.route("/students/:student_id")
 
       try {
         await student.save();
-        res.json({ message: "Student successfully updated" })
+        res.json({ message: "Student successfully updated" });
       } catch (error) {
         res.status(500).send({ message: "Error saving student", error: error });
       }
     } catch (error) {
       res.status(500).send({ message: "Error finding student", error: error });
+    }
+  })
+  .delete(async function(req, res) {
+    try {
+      await Student.deleteOne({ _id: req.params.student_id });
+      res.json({ message: "Student successfully deleted" });
+    } catch (error) {
+      res.status(500).send({ message: "Error deleting student", error: error });
     }
   });
 
