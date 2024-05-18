@@ -53,6 +53,26 @@ router.route("/students/:student_id")
     } catch (error) {
       res.send(error);
     }
+  })
+  .put(async function(req, res) {
+    try {
+      const student = await Student.findById(req.params.student_id);
+      if(!student) {
+        return res.status(404).send("Student not found");
+      }
+
+      student.name = req.body.name;
+      student.numberOfCourses = req.body.numberOfCourses;
+
+      try {
+        await student.save();
+        res.json({ message: "Student successfully updated." });
+      } catch (error) {
+        res.status(500).send({ message: "Error saving student", error: saveError });
+      }
+    } catch (error) {
+      res.status(500).send({ message: "Error finding student", error: error });
+    }
   });
 
 app.use("/api", router);
